@@ -1,0 +1,17 @@
+{% extends 'workers/base.html' %}
+{% load crispy_forms_tags %}
+{% block content %}
+    <h1 class="my-4">{% if worker == None %} New Worker {% else %} Edit - {% endif %}
+        {% if worker %}<small>{{ worker.name }}</small>{% endif %}
+    </h1>
+    <div class="row">
+        <div class="col-12">
+            <form method="post" enctype='multipart/form-data'>
+                {% csrf_token %}
+                {{ form | crispy }}
+                <input type="submit" {% if worker == None %} value="Add" {% else %} value="Update" {% endif %} class="btn btn-success"/>
+                <a href="{% url 'worker_list' %}"><button type="button" class="btn btn-secondary">Back</button></a>
+            </form>
+        </div>
+    </div>
+{% endblock %}

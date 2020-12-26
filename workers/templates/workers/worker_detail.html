@@ -1,0 +1,28 @@
+{% extends 'workers/base.html' %}
+
+{% block content %}
+    <h1 class="my-4">Detail -
+        <small>{{ worker.name }}</small>
+    </h1>
+    <div class="row">
+        <div class="col-12">
+            <ul class="list-group">
+              <li class="list-group-item"> <img src="{{ worker.image.url }}" style="width: 100px; height: 100px;"/></li>
+              <li class="list-group-item"><strong>Name:</strong> {{ worker.name }}</li>
+              <li class="list-group-item"><strong>Birthdate:</strong> {{ worker.birthdate }}</li>
+              <li class="list-group-item"><strong>Address:</strong> {{ worker.address }}</li>
+              <li class="list-group-item"><strong>Phone:</strong> {{ worker.phone }}</li>
+              <li class="list-group-item"><strong>Email:</strong> {{ worker.email }}</li>
+              <li class="list-group-item"><strong>Dni:</strong> {{ worker.dni }}</li>
+              <li class="list-group-item"><strong>Deparment:</strong> {{ worker.deparment }}</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="row top-buffer">
+        <div class="col-12">
+                <a href="{% url 'worker_edit' worker.id %}"><button type="button" class="btn btn-success">Edit</button></a>
+                <a href="{% url 'worker_list' %}"><button type="button" class="btn btn-secondary">Back</button></a>
+        </div>
+    </div>
+{% endblock %}

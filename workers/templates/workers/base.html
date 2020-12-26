@@ -1,0 +1,54 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Enterprise X</title>
+    <!-- Bootstrap core CSS -->
+    <link href="{% static 'workers/css/bootstrap.min.css' %}" rel="stylesheet">
+    <link href="{% static 'workers/css/style.css' %}" rel="stylesheet">
+  </head>
+  <body>
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+      <div class="container">
+        <a class="navbar-brand" href="#">Enterprise - X</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav mr-auto">
+            <li class="nav-item active">
+              <a class="nav-link" href="{% url 'worker_list' %}">Home <span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'worker_new' %}">New Worker</a>
+            </li>
+          </ul>
+          <form class="form-inline my-2 my-lg-0" action={% url 'worker_filter' %} method='get'>
+            <select name="field" class="browser-default custom-select mr-sm-1" aria-labelledby="dropdownMenuButton">
+              <option value="name" {% if field == "name"%} selected {%endif%}>Name</option>
+              <option value="age" {% if field == "age"%} selected {%endif%}>Age</option>
+              <option value="deparment" {% if field == "deparment"%} selected {%endif%}>Deparment</option>
+            </select>
+            <input class="form-control mr-sm-2" name="query" value="{{q}}" type="search" placeholder="Search" aria-label="Search">
+            <button class="btn btn-outline-info my-2 my-sm-0" type="submit">Search</button>
+          </form>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Page Content -->
+    <div class="container" id="app">
+        {% block content %}
+        {% endblock %}
+    </div>
+    <!-- /.container -->
+
+    <!-- Bootstrap core JavaScript -->
+    <script src="{% static 'workers/js/jquery.min.js' %}"></script>
+    <script src="{% static 'workers/js/bootstrap.min.js' %}"></script>
+  </body>
+</html>
