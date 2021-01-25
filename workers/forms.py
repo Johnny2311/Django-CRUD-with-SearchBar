@@ -3,6 +3,7 @@ from django import forms
 
 
 class WorkerForm(forms.ModelForm):
+    birthdate = forms.DateField(input_formats=['%d/%m/%Y'])
     class Meta:
         model = Worker
-        fields = ('name', 'birthdate', 'address', 'phone', 'email', 'dni', 'deparment', 'image')
+        fields = ('__all__')

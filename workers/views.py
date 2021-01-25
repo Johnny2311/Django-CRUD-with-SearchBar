@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from workers.models import Worker
 from django.views.generic import ListView, CreateView, UpdateView, DeleteView, DetailView
 from .forms import WorkerForm
@@ -7,6 +7,10 @@ from django.contrib.messages.views import SuccessMessageMixin
 from django.db.models import Q
 from django.utils import timezone
 import datetime
+
+
+def index(request):
+    return redirect(reverse_lazy('worker_list'))
 
 class WorkersList(ListView):
     model = Worker
