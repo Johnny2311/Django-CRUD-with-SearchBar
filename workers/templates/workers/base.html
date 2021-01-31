@@ -30,13 +30,13 @@
               <a class="nav-link" href="{% url 'worker_new' %}">New Worker</a>
             </li>
           </ul>
-          <form class="form-inline my-2 my-lg-0" action={% url 'worker_filter' %} method='get'>
+          <form class="form-inline my-2 my-lg-0" method='get'>
             <select name="field" class="browser-default custom-select mr-sm-1" aria-labelledby="dropdownMenuButton">
               <option value="name" {% if field == "name"%} selected {%endif%}>Name</option>
               <option value="age" {% if field == "age"%} selected {%endif%}>Age</option>
               <option value="deparment" {% if field == "deparment"%} selected {%endif%}>Deparment</option>
             </select>
-            <input class="form-control mr-sm-2" name="query" value="{{q}}" type="search" placeholder="Search" aria-label="Search">
+            <input class="form-control mr-sm-2" name="q" value="{{q}}" type="search" placeholder="Search" aria-label="Search">
             <button class="btn btn-outline-info my-2 my-sm-0" type="submit">Search</button>
           </form>
         </div>
