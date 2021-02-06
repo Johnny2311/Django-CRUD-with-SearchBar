@@ -1,9 +1,21 @@
 {% extends 'workers/base.html' %}
 
 {% block content %}
-    <h1 class="my-4">
-        <small>Workers</small>
-    </h1>
+    <div class="row my-4">
+        <h1 class="col">
+            <small>Workers</small>
+        </h1>
+        <form class="col offset-md-1 form-inline" method='get'>
+            <select name="field" class="browser-default custom-select mr-sm-1" aria-labelledby="dropdownMenuButton">
+              <option value="name" {% if field == "name"%} selected {%endif%}>Name</option>
+              <option value="age" {% if field == "age"%} selected {%endif%}>Age</option>
+              <option value="deparment" {% if field == "deparment"%} selected {%endif%}>Deparment</option>
+            </select>
+            <input class="form-control mr-sm-2" name="q" value="{{q}}" type="search" placeholder="Search" aria-label="Search">
+            <button class="btn btn-outline-info my-2 my-sm-0" type="submit">Search</button>
+        </form>
+    </div>
+    
     {% if messages %}
         {% for message in messages %}
             <div class="alert alert-success" role="alert">

@@ -10,6 +10,7 @@ from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 import datetime
 
 
+
 def index(request):
     return redirect(reverse_lazy('worker_list'))
 
@@ -33,8 +34,11 @@ class WorkersList(ListView):
             if field == "name":
                 workers = Worker.objects.filter(name__icontains=q)
             elif field == "age":
-                elapsed = timezone.now() - datetime.timedelta(days=int(q) * 365)
-                workers = Worker.objects.filter(Q(birthdate__lt=elapsed) & Q(birthdate__gt=elapsed - datetime.timedelta(days=365)))
+                try:
+                    elapsed = timezone.now() - datetime.timedelta(days=int(q) * 365)
+                    workers = Worker.objects.filter(Q(birthdate__lt=elapsed) & Q(birthdate__gt=elapsed - datetime.timedelta(days=365)))
+                except ValueError:
+                    workers = Worker.objects.none()
             elif field == "deparment":    
                 workers = Worker.objects.filter(deparment__icontains=q)
         return workers
