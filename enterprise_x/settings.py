@@ -26,7 +26,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY', 'f$4=eo0gpv6-^jov*#64!a7@zuz+i=elsmodbv%1j!j1ma=h@^')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = bool(os.environ.get('DJANGO_DEBUG', True))
+# DEBUG = bool(os.environ.get('DJANGO_DEBUG', True))
+DEBUG = True
+
 
 ALLOWED_HOSTS = ['https://enterprise-x.herokuapp.com', 'localhost', '127.0.0.1']
 
@@ -129,7 +131,8 @@ DATE_INPUT_FORMATS = ['%d/%m/%Y']
 
 STATIC_URL = '/static/'
 STATIC_ROOT = BASE_DIR / 'staticfiles'
-STATICFILES_STORAGE = 'whitenoise.django.GzipManifestStaticFilesStorage'
+# Simplified static files serving (optional)
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = BASE_DIR / 'media'
@@ -141,6 +144,5 @@ django_heroku.settings(locals())
 db_from_env = dj_database_url.config(conn_max_age=500)
 DATABASES['default'].update(db_from_env)
 
-# Simplified static files serving (optional)
-STATIC_STORAGE = 'whitenoise.storage.CompressedManifestFilesStorage'
+
 
